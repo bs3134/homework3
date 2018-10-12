@@ -2,8 +2,9 @@
 title: "Untitled"
 output: html_document
 ---
-  
-```{r}
+
+#Problem 1  
+```{r first}
 
 library(tidyverse)
 library(p8105.datasets)
@@ -40,7 +41,24 @@ gitfile %>%
   
   knitr::kable(digits = 1)
              
-
-  
 ```
 *After listing the freq of Locationabbr, the state CT,FL and NC have 7 locations.
+
+
+#Problem 2
+```{r second}
+library(tidyverse)
+library(p8105.datasets)
+
+instacart
+count_aisle=distinct(instacart,aisle)
+count_aisle
+number_aisle=count(instacart,aisle)
+arrange_aisle=arrange(number_aisle,desc(n))
+arrange_aisle
+
+
+
+```
+*The data has 1384607 rows and 15 columns (variables) with column names product id, user id, order hours a day, days since prior order, order number and so on. 
+*There are 134 different aisles, and the fresh vegetable aisle has the most items ordered from. 
