@@ -57,8 +57,13 @@ number_aisle=count(instacart,aisle)
 arrange_aisle=arrange(number_aisle,desc(n))
 arrange_aisle
 
+ggplot(number_aisle, aes(x = aisle, y = n)) + 
+  geom_point()+
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
 
 
 ```
-*The data has 1384607 rows and 15 columns (variables) with column names product id, user id, order hours a day, days since prior order, order number and so on. 
-*There are 134 different aisles, and the fresh vegetable aisle has the most items ordered from. 
+* The data has 1384607 rows and 15 columns (variables) with column names product id, user id, order hours a day, days since prior order, order number and so on. 
+* There are 134 different aisles, and the fresh vegetable aisle has the most items ordered from. 
