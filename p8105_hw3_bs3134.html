@@ -366,7 +366,7 @@ instacart</code></pre>
 ## #   order_dow &lt;int&gt;, order_hour_of_day &lt;int&gt;,
 ## #   days_since_prior_order &lt;int&gt;, product_name &lt;chr&gt;, aisle_id &lt;int&gt;,
 ## #   department_id &lt;int&gt;, aisle &lt;chr&gt;, department &lt;chr&gt;</code></pre>
-<pre class="r"><code>new=select(instacart,product_name,order_number,aisle)
+<pre class="r"><code>new=select(instacart,product_name,order_number,aisle,order_dow,order_hour_of_day)
 count_aisle=distinct(instacart,aisle)
 count_aisle</code></pre>
 <pre><code>## # A tibble: 134 x 1
@@ -3351,6 +3351,48 @@ df1</code></pre>
 ##   baking            dog                          packaged            
 ##   &lt;chr&gt;             &lt;chr&gt;                        &lt;chr&gt;               
 ## 1 Light Brown Sugar Standard Size Pet Waste bags Organic Baby Spinach</code></pre>
+<pre class="r"><code>last=filter(new,product_name%in%c(&quot;Pink Lady Apples&quot;,&quot;Coffee Ice Cream&quot;))
+last%&gt;%
+  group_by(product_name,order_dow)%&gt;%
+  summarize(mean=mean(order_hour_of_day))%&gt;%
+  spread(key=order_dow,value=mean)%&gt;%
+  knitr::kable(digits = 1)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">product_name</th>
+<th align="right">0</th>
+<th align="right">1</th>
+<th align="right">2</th>
+<th align="right">3</th>
+<th align="right">4</th>
+<th align="right">5</th>
+<th align="right">6</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Coffee Ice Cream</td>
+<td align="right">13.8</td>
+<td align="right">14.3</td>
+<td align="right">15.4</td>
+<td align="right">15.3</td>
+<td align="right">15.2</td>
+<td align="right">12.3</td>
+<td align="right">13.8</td>
+</tr>
+<tr class="even">
+<td align="left">Pink Lady Apples</td>
+<td align="right">13.4</td>
+<td align="right">11.4</td>
+<td align="right">11.7</td>
+<td align="right">14.2</td>
+<td align="right">11.6</td>
+<td align="right">12.8</td>
+<td align="right">11.9</td>
+</tr>
+</tbody>
+</table>
 <ul>
 <li>The data has 1384607 rows and 15 columns (variables) with column names product id, user id, order hours a day, days since prior order, order number and so on.</li>
 <li>There are 134 different aisles, and the fresh vegetable aisle has the most items ordered from.</li>

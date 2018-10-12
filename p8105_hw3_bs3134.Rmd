@@ -51,7 +51,7 @@ library(tidyverse)
 library(p8105.datasets)
 
 instacart
-new=select(instacart,product_name,order_number,aisle)
+new=select(instacart,product_name,order_number,aisle,order_dow,order_hour_of_day)
 count_aisle=distinct(instacart,aisle)
 count_aisle
 number_aisle=count(instacart,aisle)
@@ -87,6 +87,15 @@ dog=c("Standard Size Pet Waste bags")
 packaged=c("Organic Baby Spinach")
 df1=data_frame(baking,dog,packaged)
 df1
+last=filter(new,product_name%in%c("Pink Lady Apples","Coffee Ice Cream"))
+last%>%
+  group_by(product_name,order_dow)%>%
+  summarize(mean=mean(order_hour_of_day))%>%
+  spread(key=order_dow,value=mean)%>%
+  knitr::kable(digits = 1)
+          
 ```
+
+
 * The data has 1384607 rows and 15 columns (variables) with column names product id, user id, order hours a day, days since prior order, order number and so on. 
 * There are 134 different aisles, and the fresh vegetable aisle has the most items ordered from. 
