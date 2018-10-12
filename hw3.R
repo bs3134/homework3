@@ -1,5 +1,5 @@
 ---
-title: "Untitled"
+  title: "Untitled"
 output: html_document
 ---
   
@@ -20,7 +20,7 @@ gitfile
 x=filter(gitfile,Locationabbr=="NY")
 x
 
-  
+
 
 gitfile2002=filter(gitfile,Year==2002)
 count(gitfile2002,Locationabbr)
@@ -29,18 +29,18 @@ gitfile %>%
   group_by(Year, Locationabbr) %>%
   summarize(n_obs = n())%>%
   ggplot(aes(x = Year, y = n_obs, color = Locationabbr)) + 
-    geom_point() + geom_line() + 
-    theme(legend.position = "bottom")
+  geom_point() + geom_line() + 
+  theme(legend.position = "bottom")
 
-  
+
 gitfile %>%
   group_by(Year, Locationdesc) %>%
   filter(Locationabbr=="NY",Year%in%c(2002,2006,2010))%>%
   summarize(mean_ex = mean(Excellent,na.rm=TRUE)) %>% 
   
   knitr::kable(digits = 1)
-             
 
-  
+
+
 ```
 *After listing the freq of Locationabbr, the state CT,FL and NC have 7 locations.
