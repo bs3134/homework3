@@ -99,3 +99,19 @@ last%>%
 
 * The data has 1384607 rows and 15 columns (variables) with column names product id, user id, order hours a day, days since prior order, order number and so on. 
 * There are 134 different aisles, and the fresh vegetable aisle has the most items ordered from. 
+*In the last table, the number of order_dow 0,1,2,3,4,5,6 represents Sunday,Monday,Tuesday,Wednesday,Thursday,Friday and Saturday.
+
+
+#Problem 3
+```{r third}
+library(tidyverse)
+library(p8105.datasets)
+
+ny_noaa
+colMeans(is.na(ny_noaa))
+
+
+```
+
+
+* The data contains 2595176 rows and 7 columns, variable names are id, data,precipitation,snowfall,snow depth,max temperature and minimum temperature. 
