@@ -107,11 +107,16 @@ last%>%
 library(tidyverse)
 library(p8105.datasets)
 
-ny_noaa
-colMeans(is.na(ny_noaa))
+data=ny_noaa
+colMeans(is.na(data))
+
+data%>%
+  janitor::clean_names() %>%
+  separate(date, into = c("year", "month", "day"), sep="-")
+tail(names(sort(table(data$snow))), 1)
 
 
 ```
 
 
-* The data contains 2595176 rows and 7 columns, variable names are id, data,precipitation,snowfall,snow depth,max temperature and minimum temperature. 
+* The data contains 2595176 rows and 7 columns, variable names are id, data,precipitation,snowfall,snow depth,max temperature and minimum temperature. This data is made by different weather stations, and therefore there are some values missing in precipitation,snowfall, snow depth and temperature maximum and minimum.
